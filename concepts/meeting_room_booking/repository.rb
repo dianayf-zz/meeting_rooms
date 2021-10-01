@@ -1,0 +1,2 @@
+class MeetingRoomBookingRepository
+end
