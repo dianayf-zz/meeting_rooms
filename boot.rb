@@ -9,7 +9,7 @@ Bundler.setup
 Bundler.require :default, ENV.fetch("APP_ENV")
 
 
-%W(config routes).each do |d|
+%W(lib config routes concepts).each do |d|
   require_all Dir.glob("#{d}/**/*.rb")
 end
 

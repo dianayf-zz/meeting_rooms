@@ -33,5 +33,7 @@ end
 group :test do
   gem "factory_bot", "~> 4.0"
   gem 'rack-test', '~> 0.6.3', require: 'rack/test'
+  gem 'rspec'
+  gem 'rspec_junit_formatter'
   gem 'que-testing', :require => false
 end

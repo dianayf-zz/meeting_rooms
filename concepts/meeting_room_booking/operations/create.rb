@@ -1,23 +1,28 @@
 class MeetingRoomBooking
   class Create < Operation
     def initialize(
-      repository: TransactionRepository.new,
+      repository: MeetingRoomBookingRepository.new
     )
-      @repository = repository
+      @meeting_room_booking_repository = repository
       super
     end
-=begin
-{
- user_id:,
- meeting_room_id:,
- booked_starts_at:,
- booked_ends_at:,
-}
-=end
 
     step :validate
     step :verify_meeting_room_availability
     step :persist
     step :serialize
+
+    private
+
+    def validate(input)
+      p  "MeetingRoomBooking::Create - validate"
+      schema = MeetingRoomBookingSchema.new
+      check_schema_validation schema.call(input)
+    end
+
+    def verify_meeting_room_availability(input)
+      p "MeetingRoomBooking::Create - verify_meeting_room_availability"
+        Success(input)
+    end
   end
 end
