@@ -13,8 +13,6 @@ Bundler.require :default, ENV.fetch("APP_ENV")
   require_all Dir.glob("#{d}/**/*.rb")
 end
 
-Hanami::Model.load!
-
 MeetingRoomAPI = Rack::Builder.new do
   run Routers::Root
 end

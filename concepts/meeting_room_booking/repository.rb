@@ -1,2 +1,2 @@
-class MeetingRoomBookingRepository < Hanami::Repository
+class MeetingRoomBookingRepository
 end

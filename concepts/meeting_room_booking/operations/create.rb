@@ -16,11 +16,21 @@ class MeetingRoomBooking
 
     def validate(input)
       p  "MeetingRoomBooking::Create - validate"
-      schema = MeetingRoomBookingSchema.new
+      schema = MeetingRoomBookingCreate
       check_schema_validation schema.call(input)
     end
 
     def verify_meeting_room_availability(input)
+      p "MeetingRoomBooking::Create - verify_meeting_room_availability"
+        Success(input)
+    end
+
+    def persist(input)
+      p "MeetingRoomBooking::Create - verify_meeting_room_availability"
+        Success(input)
+    end
+
+    def serialize(input)
       p "MeetingRoomBooking::Create - verify_meeting_room_availability"
         Success(input)
     end
