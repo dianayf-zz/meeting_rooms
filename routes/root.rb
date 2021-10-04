@@ -10,10 +10,11 @@ module Routers
 
     on "v1" do
       on ("meeting_rooms") { run MeetingRooms::Public }
+      on ("meeting_rooms_booking") { run MeetingRoomBookings::Public }
     end
 
     handle 404 do
-      fail_with_not_found
+      Failure(type: :not_found, reason: "No encontrada")
     end
   end
 end

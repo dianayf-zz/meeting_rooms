@@ -1,3 +1,3 @@
-class Company < Sequel::Model
+class Company
 end
 
