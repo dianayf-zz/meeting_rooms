@@ -21,8 +21,6 @@ gem 'transproc', '1.1.1', require: 'transproc/all'
 gem 'rack-cors', require: 'rack/cors'
 gem 'puma', require: false
 gem 'pry'
-gem 'warning'
-
 
 group :development do
   gem 'shotgun'

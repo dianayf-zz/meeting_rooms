@@ -69,7 +69,7 @@ RSpec.describe MeetingRoomBookings::Create do
       allow(repository).to receive(:active_booking_by_room_and_date?) {true}
       result = operation.call(input)
       expect(result ).to be_instance_of(Dry::Monads::Failure)
-      expect(result.failure).to eq({:type=>:unprocessable, :reason=>"Meeting room has already booked during this timeslots"})
+      expect(result.failure).to eq({:type=>:unprocessable, :reason=>"Meeting room has already booked for this timeslots"})
     end
   end
 end

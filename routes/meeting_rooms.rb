@@ -1,8 +1,9 @@
 module MeetingRoomsRoutes
-  Public = Syro.new do
+  Public = Syro.new(API::Wrapper) do
     get do
-      operation = MeetingRooms::GetAllFiltered.new
-      handle_result operation.call(operation_input), success_status: :ok
+      input = get_all_query_params
+      operation = MeetingRooms::GetAllAndFilter.new
+      handle_result operation.call(input), success_status: :ok
     end
   end
 end
