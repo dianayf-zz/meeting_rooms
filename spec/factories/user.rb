@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :user do
-    name { "Diana"}
+    first_name { "Diana"}
+    last_name { "Perez"}
     company_id { 1}
     created_at {Time.now}
     updated_at {Time.now}

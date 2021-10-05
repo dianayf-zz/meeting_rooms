@@ -1,7 +1,7 @@
-class MeetingRoomBooking
+module MeetingRoomBookings
   class Create < Operation
     def initialize(
-      repository: MeetingRoomsBooking,
+      repository: MeetingRoomBooking,
       user_repository: User,
       meeting_room_repository: MeetingRoom
     )
@@ -22,13 +22,13 @@ class MeetingRoomBooking
     private
 
     def validate(input)
-      p  "MeetingRoomBooking::Create - validate"
+      p  "MeetingRoomsBookings::Create - validate"
       schema = MeetingRoomBookingCreate
       check_schema_validation schema.call(input)
     end
 
     def find_user(input)
-      p "MeetingRoomBooking::Create - find_user"
+      p "MeetingRoomsBookings::Create - find_user"
       @user_repository.find_by_id(input.fetch(:user_id))
         .bind(-> user {
           Success(input.merge(user: user.to_hash))
@@ -37,7 +37,7 @@ class MeetingRoomBooking
     end
 
     def find_meeting_room(input)
-      p "MeetingRoomBooking::Create - find_meeting_room"
+      p "MeetingRoomsBookings::Create - find_meeting_room"
       @meeting_room_repository.find_by_id(input.fetch(:meeting_room_id))
         .bind(-> room {
           Success(input.merge(meeting_room: room.to_hash))
@@ -46,27 +46,26 @@ class MeetingRoomBooking
     end
 
     def check_rooms_company_allowance(input)
-      p "MeetingRoomBooking::Create - check_rooms_company_allowance"
+      p "MeetingRoomsBookings::Create - check_rooms_company_allowance"
       if input.dig(:user, :company_id) == input.dig(:meeting_room, :company_id)
         Success(input)
       else
-        fail_with_forbidden(message: "Meeting room does not belongs to your company")
+        fail_with_forbidden(reason: "Meeting room does not belongs to your company")
       end
     end
 
     def verify_meeting_room_availability(input)
-      p "MeetingRoomBooking::Create - verify_meeting_room_availability"
-      @repository.find_active_booking_by_room_and_date(
+      p "MeetingRoomsBookings::Create - verify_meeting_room_availability"
+      already_booked = @repository.active_booking_by_room_and_date?(
         meeting_room_id: input.fetch(:meeting_room_id),
         booked_starts_at: input.fetch(:booked_starts_at),
         booked_ends_at: input.fetch(:booked_ends_at),
         )
-        .bind(-> _ { Success(input)} )
-        .or{fail_with_validation_error(meeting_room_id: "Meeting room has already booked")}
+      already_booked ? fail_with_unprocessable(reason: "Meeting room has already booked during this timeslots") : Success(input)
     end
 
     def create_booking(input)
-      p "MeetingRoomBooking::Create - create_booking"
+      p "MeetingRoomsBookings::Create - create_booking"
       booking = @repository.new(
         user_id: input.fetch(:user_id),
         meeting_room_id: input.fetch(:meeting_room_id),
@@ -77,14 +76,14 @@ class MeetingRoomBooking
       if booking.save
         Success(input.merge meeting_room_booking: booking)
       else
-        p "MeetingRoomBooking::Create - create_booking - ERROR"
-        internal_failure(reason: "La sala no pudo ser agendada")
+        p "MeetingRoomsBookings::Create - create_booking - ERROR"
+        internal_failure(reason: "Meeting room could not be booked")
       end
     end
 
     def serialize(input)
-      p "MeetingRoomBooking::Create - serialize"
-       Success(input.fetch(:meeting_room_booking))
+      p "MeetingRoomsBookings::Create - serialize"
+      input.fetch(:meeting_room_booking).to_hash
     end
   end
 end

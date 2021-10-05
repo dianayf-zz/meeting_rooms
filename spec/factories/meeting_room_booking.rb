@@ -6,8 +6,8 @@ FactoryBot.define do
     created_at {Time.now}
     updated_at {Time.now}
 
-    booked_starts__at {Time.now + 2.days}
-    booked_ends__at {Time.now + 30.minutes}
+    booked_starts_at {"2021-09-29 10:30:00"}
+    booked_ends_at {"2021-09-29 10:40:00"}
 
     factory :ends_booking do
       status {'FINALIZED'}

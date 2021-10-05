@@ -1,3 +1,3 @@
-class Company
+module Companies
 end
 

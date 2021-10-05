@@ -1,5 +1,5 @@
-class MeetingRoom
-  class GetAllFiltered < Operation
+module MeetingRooms
+  class GetAllAndFilter < Operation
     def initialize(
       repository: MeetingRoomBookingRepository.new
     )

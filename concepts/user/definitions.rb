@@ -1,3 +1,3 @@
-class User
+module Users
 end
 

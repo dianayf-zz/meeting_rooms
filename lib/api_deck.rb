@@ -16,27 +16,22 @@ module API
       super
     end
 
-    def require_token
-    end
-
     def fail_with_reason(reason, status: :UNPROCESSABLE, type: :ERROR)
       error = { type: type, reason: reason }
       fail_with(error, status: status)
     end
 
-    def handle_result(execution, success_status: :OK)
+    def handle_result(execution, success_status: :ok)
       if execution.success?
-      byebug
-        res.status = HTTPResponses[type][:code]
+        res.status = HTTPResponses[success_status][:code]
         response =  {  
-                      status: status,
+                      status: HTTPResponses[success_status][:status],
                       data: execution.value!
                      }
       else
-      byebug
         result = execution.failure
         type = result.fetch(:type)
-        reason = result[:reason] || result[:statuss]
+        reason = result[:reason] || result[:messages]
         res.status = HTTPResponses[type][:code]
         response =  { error: 
                       { 
@@ -45,7 +40,6 @@ module API
                       }
                     }
       end 
-      byebug
       res.json(Oj.dump(response, use_to_hash: true, mode: :compat))
       halt res.finish
     end
