@@ -90,3 +90,7 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
          ]
       }
    ```
+## 5. Comments
+ - Operation test was added by best practice should be create a end-to-end test on routes to ensure rigth behaviour in happy scenario and some fails response cases.
+ - Also, unitary test on persistence clases enforce basic behaviour
+ - Despite at beginning, it's a single company it may be extend for more than one with the company model
