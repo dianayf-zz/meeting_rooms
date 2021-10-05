@@ -18,6 +18,7 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
       DEFAULT_TIME_ZONE=+0200
     5. Create database meeting_rooms_dev
      
+     
 ## 3. Command execution
   Any command line sentence should include `dotenv -f .env`, for instance 
   - Run migrations: `dotenv -f .env rake db:migrate`
@@ -31,7 +32,7 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
 ## 5. API endpoints
   1. Booked meeting room:
     - POST /v1/meeting_rooms_booking
-    - Authorization: <<user_key>>
+    - Authorization: <<secret_key>> (It will be a nice to have, currently it's not checked but User table aws filled with this key)
     - Signature Request Payload:
 
   ```json
@@ -67,29 +68,25 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
   ```
 
   2. Booked meeting room:
-    - POST /v1/meeting_rooms_booking
-    - Authorization: <<user_key>>
-    - Expected Payload:
+    - GET /v1/meeting_rooms_booking/?company_id={company_id}
+    - Authorization: <<secret_key>> (It will be a nice to have, currently it's not checked but User table aws filled with this key)
+    - Expected Query Params:
 
-    ```json
-      {
-        "user_id": 1,
-        "meeting_room_id": 1,
-        "booked_starts_at": "2021-09-29 10:00:00 +0200",
-        "booked_ends_at": "2021-09-29 10:30:00 +0200"
-      }
-    ```
    - Response
 
     ```json
       {
-        "data": {
+        "data": [
+          {
             "id": "123-1234567890-12345",
-            "user_id": 1,
-            "meeting_room_id": 1,
-            "booked_starts_at": "2021-09-29 10:00:00 +0200",
-            "booked_ends_at": "2021-09-29 10:30:00 +0200"
+            "max_capacity": 4,
             "status": "BOOKED"
-         }
+          }, 
+          {
+            "id": "123-1234567890-12345",
+            "max_capacity": 4,
+            "status": "AVAILABLE"
+          }
+         ]
       }
    ```
