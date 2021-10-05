@@ -80,12 +80,14 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
           {
             "id": 1,
             "max_capacity": 4,
-            "status": "BOOKED"
+            "status": "BOOKED",
+            "created_at":  "2021-09-29 17:13:05 -0500"
           }, 
           {
             "id": 2,
             "max_capacity": 8,
-            "status": "AVAILABLE"
+            "status": "AVAILABLE",
+            "created_at":  "2021-09-29 19:13:05 -0500"
           }
          ]
       }
