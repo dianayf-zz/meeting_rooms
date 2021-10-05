@@ -61,7 +61,7 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
           "user_id": 1,
           "meeting_room_id": 1,
           "booked_starts_at": "2021-09-29 10:00:00 +0200",
-          "booked_ends_at": "2021-09-29 10:30:00 +0200"
+          "booked_ends_at": "2021-09-29 10:30:00 +0200",
           "status": "BOOKED"
        }
     }
