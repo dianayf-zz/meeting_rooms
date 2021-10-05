@@ -9,6 +9,7 @@ module API
       :unauthorized => {status: 'UNAUTHORIZED', code: 401},
       :forbidden => {status: 'FORBIDDEN', code: 403},
       :input_validation_error => {status: 'UNPROCESSABLE', code: 422},
+      :unprocessable => {status: 'UNPROCESSABLE', code: 422},
       :internal_server_error => {status: 'INTERNAL_SERVER_ERROR', code: 500}
     }.freeze
 
