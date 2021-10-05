@@ -1,8 +1,10 @@
-module MeetingRoomBookings
-  Public = Syro.new do
+module MeetingRoomBookingRoutes
+  Public = Syro.new(API::Deck) do
     post do
-      operation = MeetingRoomBooking::Create.new
-      handle_result operation.call(operation_input), success_status: :OK
+      parse_json_body
+      operation = MeetingRoomBookings::Create.new
+      result  = operation.call(inbox[:body])
+      handle_result result, success_status: :created
     end
   end
 end

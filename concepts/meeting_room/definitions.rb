@@ -1,3 +1,3 @@
-class MeetingRoom < Sequel::Model
+module MeetingRooms
 end
 

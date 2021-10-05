@@ -1,7 +1,3 @@
-%W(meeting_rooms).each do |router| 
-  require_relative router
-end
-
 module Routers
   Root = Syro.new do
     on "fail" do
@@ -9,11 +5,12 @@ module Routers
     end
 
     on "v1" do
-      on ("meeting_rooms") { run MeetingRooms::Public }
+      on ("meeting_rooms") { run MeetingRoomsRoutes::Public }
+      on ("meeting_rooms_booking") { run MeetingRoomBookingRoutes::Public }
     end
 
     handle 404 do
-      fail_with_not_found
+      Failure(type: :not_found, reason: "No encontrada")
     end
   end
 end

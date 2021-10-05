@@ -1,3 +1,3 @@
-class User < Sequel::Model
+module Users
 end
 

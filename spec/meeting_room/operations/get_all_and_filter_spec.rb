@@ -1,4 +1,4 @@
-RSpec.describe MeetingRoomBookings::Create do
+RSpec.describe MeetingRooms::GetAllAndFilter do
   let(:company) {build(:company).save}
   let(:company2) {build(:company, name: "theother").save}
   let(:meeting_room) {build(:meeting_room, company_id: company.id).save}
