@@ -5,18 +5,19 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
 ## 1. Requirements:
     1.  Ruby 2.7.0
     2.  dotenv gem (manage multiple environments)
-    3.  PostgreSQL (min 10.1 version)
+    3.  PostgreSQL (min version 10)
 
 ## 2. Setting project, follow next steps
-    1. `gem install bundler -v 2.1.2` Installs bundler gem
-    2. `gem install dotenv` Installs dotenv gem
-    3. `bundle install`
-    4. Set environment variables, creates .env file with next values:
+  1. `gem install bundler -v 2.1.2` Installs bundler gem
+  2. `gem install dotenv` Installs dotenv gem
+  3. `bundle install`
+  4. Set environment variables, creates .env file with next values:
+  ```
       DATABASE_URL=postgres://localhost:5432/meeting_rooms_dev
       APP_ENV=dev
       DEFAULT_LOCALE=en
-      DEFAULT_TIME_ZONE=+0200
-    5. Create database meeting_rooms_dev
+  ```
+  5. Create database meeting_rooms_dev
      
      
 ## 3. Command execution
@@ -27,6 +28,7 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
 
 ## 4. Test environment
   Any command line sentence should include `dotenv -f .env.test`, and you can 
+  - Create database meeting_rooms_test
   - Run test: `dotenv -f .env rspec spec/`
   
 ## 5. API endpoints
