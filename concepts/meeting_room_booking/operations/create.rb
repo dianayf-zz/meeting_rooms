@@ -61,7 +61,7 @@ module MeetingRoomBookings
         booked_starts_at: input.fetch(:booked_starts_at),
         booked_ends_at: input.fetch(:booked_ends_at),
         )
-      already_booked ? fail_with_unprocessable(reason: "Meeting room has already booked during this timeslots") : Success(input)
+      already_booked ? fail_with_unprocessable(reason: "Meeting room has already booked for this timeslots") : Success(input)
     end
 
     def create_booking(input)

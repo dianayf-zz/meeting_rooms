@@ -1,5 +1,5 @@
 module MeetingRoomBookingRoutes
-  Public = Syro.new(API::Deck) do
+  Public = Syro.new(API::Wrapper) do
     post do
       parse_json_body
       operation = MeetingRoomBookings::Create.new
