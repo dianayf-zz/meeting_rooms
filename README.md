@@ -74,22 +74,22 @@ Meeting Room booking allow user to book a meeting room at a specific time, its a
 
    - Response
 
-    ```json
+   ```json
       {
         "data": [
           {
-            "id": "123-1234567890-12345",
+            "id": 1,
             "max_capacity": 4,
             "status": "BOOKED"
           }, 
           {
-            "id": "123-1234567890-12345",
-            "max_capacity": 4,
+            "id": 2,
+            "max_capacity": 8,
             "status": "AVAILABLE"
           }
          ]
       }
-    ```
+   ```
 
 ## 6. Comments
  - Operation test was added by best practice should be create a end-to-end test on routes to ensure rigth behaviour in happy scenario and some fails response cases.
