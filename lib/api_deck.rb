@@ -61,13 +61,5 @@ module API
         fail_with_reason err_msg, status: :BAD_REQUEST
       end
     end
-
-    def json(final_response)
-      # Append trace ID from the rack env if available
-      final_json = Oj.dump final_response, use_to_hash: true, mode: :compat
-      res.json final_json
-      halt res.finish
-    end
-
   end
 end
